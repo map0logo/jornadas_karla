@@ -1,0 +1,20 @@
+---
+title: "Reportes Dinámicos y Aplicaciones WEB interactivas con R"
+author: "Francisco Palm"
+date: "18 de marzo de 2015"
+output: html_document
+---
+
+# R
+
+Si en unas Jornadas de Estadistica a estas alturas tenemos que explicar que es R
+estamos mal.
+
+R es el entorno de analisis estadistico y generacion de graficos mas avanzado,
+
+
+# RStudio
+
+
+
+# 
