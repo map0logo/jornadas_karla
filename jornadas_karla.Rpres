@@ -2,6 +2,7 @@ Reportes Dinámicos y Aplicaciones Web interactivas con R
 ========================================================
 author: Francisco Palm
 date: 18/03/2015
+incremental: yes
 
 First Slide
 ========================================================

@@ -2,30 +2,154 @@
 title: "Reportes Dinámicos y Aplicaciones Web interactivas con R"
 author: "Francisco Palm"
 date: "12 de marzo de 2015"
-output: ioslides_presentation
+output:
+  ioslides_presentation:
+    incremental: yes
 ---
 
-## R Markdown
+## En Homenaje 
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+> *a la Lic. Karla Contreras Dávila*
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+# R
 
-## Slide with Bullets
+## R
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+- No debería ser necesario a estar alturas tener que explicar en unas Jornadas
+Estadísticas que es R.
 
-## Slide with R Code and Output
+- R es el entorno de análisis estadístico y generación de gráficos más avanzado,
+más utilizado, más flexible, más potente y con la mejor relación precio/valor
+del planeta.
 
-```{r}
-summary(cars)
+- Para usar R de forma eficaz y eficiente tienes que saber programar. Por lo
+general, la gente no sabe programar porque el uso de la ofimática (léase Word y
+Excel) les ha inhabilitado para aprender.
+
+## Instalar R
+
+### En Windows
+
+- http://www.r-project.org **->** `CRAN` **->** `0-Cloud` http://cran.rstudio.com/  
+**->** `Download R for Windows` **->** `install R for the first time`  
+**->** `Download R 3.1.3 for Windows`
+
+- Se descarga el archivo http://cran.rstudio.com/bin/windows/base/R-3.1.3-win.exe
+y se ejecuta el instalador.
+
+## Instalar R
+
+### En Linux
+
+- Se añade el repositorio apropiado según se indica en http://cran.rstudio.com/bin/linux/ubuntu/, y se ejecutan los siguientes comandos:
+
+```bash
+   $ sudo apt-get update
+   $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+   $ sudo apt-get install r-base r-base-dev
 ```
 
-## Slide with Plot
+## RStudio
 
-```{r, echo=FALSE}
-plot(cars)
-```
+- http://www.rstudio.com/ **->** `Download RStudio` **->** `Download RStudio Desktop`
 
+- Seleccionar el instalador apropiado según su plataforma (Windows|Mac OS X|Linux).
+
+- Descargar e instalar.
+
+# Reportes dinámicos
+
+## knitr
+
+- [knitr](http://yihui.name/knitr/) ha sido desarrollado por Yihui Xei, Phd por
+el Dpto. Estadística Iowa State. Actualmente empleado por RStudio.Inc.
+
+- Es un paquete genérico para intercalar código R ejecutable con texto en diversos
+formatos (por ejemplo: LaTeX, HTML, Markdown, AsciiDoc, y reStructuredText).
+Aunque el que ha ganado mayor difusión es **R Markdown**.
+
+## Flujo de trabajo con knitr
+
+1. Abrir un archivo con la extensión `.Rmd`.
+
+2. Preparar el documento con la sintaxis `R Markdown`.
+
+3. Insertar trozos de código en R para las salidas dinámicas del reporte.
+
+4. Generar el documento, lo que reemplaza el código R por su salida, y
+transformar el reporte al formato indicado: presentación, pdf, html o ms Word.
+
+## Ejemplo # 1
+
+
+
+## R markdown
+
+
+
+## Trozos (chunks) de R
+
+
+
+## YAML
+
+
+## Pander
+
+
+## Ejemplo 2
+
+
+
+## Aplicar CSS
+
+
+## Rpubs.com
+
+
+## Presentación
+
+
+## Ejemplo 3
+
+
+
+## Publicar en Dropbox
+
+
+## Shiny
+
+
+## Estructura
+
+
+## `server.R`
+
+
+## Ejemplo 4
+
+
+
+## Controlar la ejecución
+
+
+
+## Reactividad
+
+
+## `ui.R`
+
+
+## Widgets
+
+
+## Elementos HTML
+
+
+## Ejemplo 5
+
+
+## Ejecutar la aplicación
+
+
+## Compartir
