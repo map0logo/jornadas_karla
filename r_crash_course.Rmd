@@ -4,8 +4,6 @@ author: "Francisco Palm"
 date: "18/03/2015"
 output:
   html_document:
-    css: flat-table.css
-    theme: cosmo
     toc: yes
 ---
 

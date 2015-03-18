@@ -218,21 +218,79 @@ $ sudo apt-get install r-base r-base-dev</pre></li>
 # ---</pre></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Pander</h2></hgroup><article  id="pander">
-
 </article></slide><slide class=''><hgroup><h2>Ejemplo 2</h2></hgroup><article  id="ejemplo-2">
+
+<ul class = 'build'>
+<li><p>R crash course in R</p></li>
+<li><p>Script de Robin Edwards UCL/CASA <a href='http://geotheory.co.uk/blog/a-crash-course-in-r/' title=''>http://geotheory.co.uk/blog/a-crash-course-in-r/</a></p></li>
+<li><p>Ejecutar <code>rmarkdown::render(&quot;r_crash_course.R&quot;)</code></p></li>
+<li><p>Para ver los archivos intermedios <code>rmarkdown::render(&quot;r_crash_course.R&quot;, clean=FALSE)</code></p></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Tablas</h2></hgroup><article  id="tablas">
+
+<ul class = 'build'>
+<li><p>Existen varias opciones para renderizar las tablas en R markdown:</p></li>
+<li><p><code>kable()</code> es una función incluida en el paquete knitr, es buena para la mayoría de las situaciones. Requiere cargar explícitamente el paquete <code>knitr</code> con <code>library(knitr)</code>.</p></li>
+<li><p><code>pander()</code> es una buena opción, es necesario instalar el paquete <code>pander</code>. Se debe cargar en el código del trozo de R con <code>library(pander)</code>.</p></li>
+<li><p><code>xtable()</code> es la opción más flexible, también en su propio paquete <code>xtable</code>. Se debe cargar igualmente. Requiere utilizar la opción <code>results=asis</code> en la cabecera del trozo.</p></li>
+</ul>
 
 </article></slide><slide class=''><hgroup><h2>Aplicar CSS</h2></hgroup><article  id="aplicar-css">
 
-</article></slide><slide class=''><hgroup><h2>Rpubs.com</h2></hgroup><article  id="rpubs.com">
-
-</article></slide><slide class=''><hgroup><h2>Presentación</h2></hgroup><article  id="presentacion">
+<ul class = 'build'>
+<li><p>Para personalizar la apariencia de nuestros reportes en HTML podemos utilizar hojas de estilo en cascada (CSS).</p></li>
+<li><p>En los reportes disponemos de varias opciones del proyecto <a href='https://bootswatch.com' title=''>https://bootswatch.com</a>, temas de código abierto derivados de bootstrap. (quiere decir que alguien mas hizo el trabajo por nosotros). En un documento <code>.Rmd</code> seleccionar de <code>Apply Theme:</code>.</p></li>
+<li><p>Se pueden crear archivos CSS que cambien la apariencia de elementos particulares del documento.</p></li>
+</ul>
 
 </article></slide><slide class=''><hgroup><h2>Ejemplo 3</h2></hgroup><article  id="ejemplo-3">
 
-</article></slide><slide class=''><hgroup><h2>Publicar en Dropbox</h2></hgroup><article  id="publicar-en-dropbox">
+<ul class = 'build'>
+<li><p>Uso de <code>kable</code>, <code>pander</code> y <code>xtable</code> en R markdown.</p></li>
+<li><p>Modificación de la apariencia con el archivo <code>flat-table.css</code></p></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Rpubs.com</h2></hgroup><article  id="rpubs.com">
+
+<ul class = 'build'>
+<li><p>Servicio para publicar y compartir nuestros documentos y presentaciones HTML generados con <code>knitr</code>.</p></li>
+<li><p>Utilizando la opción <code>Publish</code> en la barra superior del visor HTML de RStudio se puede publicar nuestro trabajo en RPubs.</p></li>
+<li><p>Es una excelente lugar para encontrar ejemplos de documentos y presentaciones realizados con estas herramientas.</p></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Presentación</h2></hgroup><article  id="presentacion">
+
+<ul class = 'build'>
+<li><p>Este documento es un ejemplo de una presentación hecha con Rmarkdown, utilizando el motor <code>ioslides</code>.</p></li>
+<li><p>En las presentaciones la sintaxis markdown se utiliza con una lógica diferente, por ejemplo los encabezados de primer nivel <code>#</code> determinan las partes de la presentación, los encabezados de segundo nivel <code>##</code> determinan las láminas.</p></li>
+<li><p>Existen algunas opciones de configuración que dependen de cada motor de generación. Esta misma presentación es el ejemplo.</p></li>
+</ul>
+
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Web Interactiva</h2></hgroup><article  id="web-interactiva">
+
+</article></slide><slide class=''><hgroup><h2>googleVis</h2></hgroup><article  id="googlevis">
+
+<ul class = 'build'>
+<li><p><code>googleVis</code> es un paquete de R que da acceso desde R a Google Charts. Las funciones de este paquete permiten al usuario visualizar los datos con las herramientas de Google Chart se necesidad de subir los datos a Google.</p></li>
+<li><p>La salida de las funciones de <code>googleVis</code> es código html que contiene datos y referencias a la información almacenada por Google. Para visualizar los resultados se requiere un navegador con Flash.</p></li>
+<li><p>Podemos ver algunos ejemplos por acá: <a href='http://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html' title=''>http://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html</a></p></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>rCharts</h2></hgroup><article  id="rcharts">
+
+<ul class = 'build'>
+<li><p>rCharts es un paquete de R que permite crear, personalizar y compartir visualizaciones web interactivas desde R, utilizando una interfaz familiar tipo lattice.</p></li>
+<li><p>Permite trabajar con distintas bibliotecas de javascript, y permite trabajar con mapas utilizando la biblioteca de mapas leaflet.</p></li>
+<li><p>La gran diferencia con googleVis es que todas las dependencias son libres y las podemos utilizar en nuestra propia plataforma y sin conexión de Internet.</p></li>
+<li><p>Podemos ver algunos ejemplos acá <a href='http://ramnathv.github.io/rCharts/' title=''>http://ramnathv.github.io/rCharts/</a></p></li>
+</ul>
 
 </article></slide><slide class=''><hgroup><h2>Shiny</h2></hgroup><article  id="shiny">
+
+<ul class = 'build'>
+<li></li>
+</ul>
 
 </article></slide><slide class=''><hgroup><h2>Estructura</h2></hgroup><article  id="estructura">
 

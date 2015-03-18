@@ -214,18 +214,44 @@ datos como sustitución de XML.
 
 ## Rpubs.com
 
+- Servicio para publicar y compartir nuestros documentos y presentaciones HTML generados con `knitr`.
+
+- Utilizando la opción `Publish` en la barra superior del visor HTML de RStudio se puede publicar nuestro trabajo en RPubs.
+
+- Es una excelente lugar para encontrar ejemplos de documentos y presentaciones realizados con estas herramientas.
 
 ## Presentación
 
+- Este documento es un ejemplo de una presentación hecha con Rmarkdown, utilizando el motor `ioslides`.
 
-## Ejemplo 3
+- En las presentaciones la sintaxis markdown se utiliza con una lógica diferente, por ejemplo los encabezados de primer nivel `#` determinan las partes de la presentación, los encabezados de segundo nivel `##` determinan las láminas.
 
+- Existen algunas opciones de configuración que dependen de cada motor de generación. Esta misma presentación es el ejemplo.
 
+# Web Interactiva
 
-## Publicar en Dropbox
+## googleVis
 
+- `googleVis` es un paquete de R que da acceso desde R a Google Charts. Las funciones de este paquete permiten al usuario visualizar los datos con las herramientas de Google Chart se necesidad de subir los datos a Google.
+
+- La salida de las funciones de `googleVis` es código html que contiene datos y referencias a la información almacenada por Google. Para visualizar los resultados se requiere un navegador con Flash.
+
+- Podemos ver algunos ejemplos por acá: http://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html
+
+## rCharts
+
+-  rCharts es un paquete de R que permite crear, personalizar y compartir visualizaciones web interactivas desde R, utilizando una interfaz familiar tipo lattice.
+
+- Permite trabajar con distintas bibliotecas de javascript, y permite trabajar con mapas utilizando la biblioteca de mapas leaflet.
+
+- La gran diferencia con googleVis es que todas las dependencias son libres y las podemos
+utilizar en nuestra propia plataforma y sin conexión de Internet.
+
+- Podemos ver algunos ejemplos acá http://ramnathv.github.io/rCharts/
 
 ## Shiny
+
+- 
 
 
 ## Estructura
