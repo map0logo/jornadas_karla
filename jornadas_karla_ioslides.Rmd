@@ -175,14 +175,41 @@ datos como sustitución de XML.
 # ---
 ```
 
-## Pander
-
-
 ## Ejemplo 2
 
+- R crash course in R
+
+- Script de Robin Edwards UCL/CASA http://geotheory.co.uk/blog/a-crash-course-in-r/
+
+- Ejecutar `rmarkdown::render("r_crash_course.R")`
+
+- Para ver los archivos intermedios `rmarkdown::render("r_crash_course.R", clean=FALSE)`
+
+
+## Tablas
+
+ - Existen varias opciones para renderizar las tablas en R markdown:
+ 
+ - `kable()` es una función incluida en el paquete knitr, es buena para la mayoría de las situaciones. Requiere cargar explícitamente el paquete `knitr` con `library(knitr)`.
+ 
+ - `pander()` es una buena opción, es necesario instalar el paquete `pander`. Se debe cargar en el código del trozo de R con `library(pander)`.
+ 
+ - `xtable()` es la opción más flexible, también en su propio paquete `xtable`. Se debe cargar igualmente. Requiere utilizar la opción `results=asis` en la cabecera del trozo.
 
 
 ## Aplicar CSS
+
+- Para personalizar la apariencia de nuestros reportes en HTML podemos utilizar hojas de estilo en cascada (CSS).
+
+- En los reportes disponemos de varias opciones del proyecto https://bootswatch.com, temas de código abierto derivados de bootstrap. (quiere decir que alguien mas hizo el trabajo por nosotros). En un documento `.Rmd` seleccionar de `Apply Theme:`.
+
+- Se pueden crear archivos CSS que cambien la apariencia de elementos particulares del documento.
+
+## Ejemplo 3
+
+- Uso de `kable`, `pander` y `xtable` en R markdown.
+
+- Modificación de la apariencia con el archivo `flat-table.css`
 
 
 ## Rpubs.com
