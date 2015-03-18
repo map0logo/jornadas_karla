@@ -1,7 +1,7 @@
 ---
 title: "Reportes Dinámicos y Aplicaciones Web interactivas con R"
 author: "Francisco Palm"
-date: "12 de marzo de 2015"
+date: "18 de marzo de 2015"
 output:
   ioslides_presentation:
     incremental: yes
@@ -18,55 +18,73 @@ output:
 - No debería ser necesario a estar alturas tener que explicar en unas Jornadas
 Estadísticas que es R.
 
+- Se puede encontrar una introducción en http://bit.ly/introR
+
 - R es el entorno de análisis estadístico y generación de gráficos más avanzado,
 más utilizado, más flexible, más potente y con la mejor relación precio/valor
 del planeta.
 
 - Para usar R de forma eficaz y eficiente tienes que saber programar. Por lo
-general, la gente no sabe programar porque el uso de la ofimática (léase Word y
+general, la gente no sabe programar porque el uso de la ofimática (léase: Word y
 Excel) les ha inhabilitado para aprender.
 
-## Instalar R
+## Instalar R I
 
 ### En Windows
 
-- http://www.r-project.org **->** `CRAN` **->** `0-Cloud` http://cran.rstudio.com/  
-**->** `Download R for Windows` **->** `install R for the first time`  
-**->** `Download R 3.1.3 for Windows`
+- http://www.r-project.org $\rightarrow$ `CRAN`  
+$\rightarrow$ `0-Cloud` http://cran.rstudio.com/  
+$\rightarrow$ `Download R for Windows`  
+$\rightarrow$ `install R for the first time`  
+$\rightarrow$ `Download R 3.1.3 for Windows`
 
 - Se descarga el archivo http://cran.rstudio.com/bin/windows/base/R-3.1.3-win.exe
 y se ejecuta el instalador.
 
-## Instalar R
+## Instalar R II
 
 ### En Linux
 
-- Se añade el repositorio apropiado según se indica en http://cran.rstudio.com/bin/linux/ubuntu/, y se ejecutan los siguientes comandos:
+- La versión que viene en los repositorios oficiales de las principales
+distribuciones linux suele estar obsoleta.
 
-```bash
-   $ sudo apt-get update
-   $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-   $ sudo apt-get install r-base r-base-dev
+- Para obtener la versión mas reciente de R se añade el repositorio apropiado según se indica en http://cran.rstudio.com/bin/linux/ubuntu/, y se ejecutan los siguientes comandos:
+
+- ```
+$ sudo apt-get update
+$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+$ sudo apt-get install r-base r-base-dev
 ```
 
 ## RStudio
 
-- http://www.rstudio.com/ **->** `Download RStudio` **->** `Download RStudio Desktop`
+- Tienes que tener previamente instalado R o R Open  
+http://mran.revolutionanalytics.com/open/  
+(Revolution Analytics fue comprada por Microsoft)
 
-- Seleccionar el instalador apropiado según su plataforma (Windows|Mac OS X|Linux).
+- http://www.rstudio.com/  
+$\rightarrow$  `Download RStudio`  
+$\rightarrow$  `Download RStudio Desktop`
+
+- Seleccionar el instalador apropiado para nuestra plataforma (Windows|Mac OS X|Linux).
 
 - Descargar e instalar.
+
+## Interfaz de RStudio
+
+![interfaz rstudio](images/interfaz_rstudio.png)
 
 # Reportes dinámicos
 
 ## knitr
 
 - [knitr](http://yihui.name/knitr/) ha sido desarrollado por Yihui Xei, Phd por
-el Dpto. Estadística Iowa State. Actualmente empleado por RStudio.Inc.
+el Dpto. Estadística Iowa State. Actualmente empleado por RStudio Inc.
 
 - Es un paquete genérico para intercalar código R ejecutable con texto en diversos
 formatos (por ejemplo: LaTeX, HTML, Markdown, AsciiDoc, y reStructuredText).
-Aunque el que ha ganado mayor difusión es **R Markdown**.
+
+- El formato de texto que ha ganado mayor difusión es **R Markdown**.
 
 ## Flujo de trabajo con knitr
 
@@ -79,20 +97,83 @@ Aunque el que ha ganado mayor difusión es **R Markdown**.
 4. Generar el documento, lo que reemplaza el código R por su salida, y
 transformar el reporte al formato indicado: presentación, pdf, html o ms Word.
 
-## Ejemplo # 1
+## Ejemplo # 1a
 
+```{r}
+# Un ejemplo de código fuera de `R` aquí;
+# sabemos que el valor de $\pi$ es `r pi`.
+# 
+# ```{r, echo=FALSE, fig.height=3, fig.width=6}
+# set.seed(1213)  # para hacerlo reproducible
+# x <- cumsum(rnorm(100))
+# mean(x)  # media de x
+# plot(x, type = 'l')  # Brownian motion
+# ```
+```
 
+## Ejemplo 1b
+
+Un ejemplo de código fuera de `R` aquí;
+sabemos que el valor de $\pi$ es `r pi`.
+
+```{r, echo=FALSE, fig.height=3, fig.width=6}
+set.seed(1213)  # para hacerlo reproducible
+x <- cumsum(rnorm(100))
+mean(x)  # media de x
+plot(x, type = 'l')  # Brownian motion
+```
 
 ## R markdown
 
+- Ver documentación en http://rmarkdown.rstudio.com.
 
+- Para los ansiosos buscar la chuleta respectiva en http://www.rstudio.com/resources/cheatsheets/
+
+- R Markdown es un formato de edición diseñado como una extensión del lenguaje
+de marcado ligero markdown al que se le intercalan trozos de código R.
+
+- Los documentos R markdown son completamente reproducibles (puede regenerarse
+automáticamente aunque cambie el código R o los datos)
+
+- RStudio utiliza R Markdown v2 con mejoras para formatos de salida,
+presentaciones, tablas y bibliografías, personalización de la salida,
+compilación desde scripts de R, extensible, etc.
 
 ## Trozos (chunks) de R
 
+- Es código R que va encerrado entre
 
+- ```{r}
+# ```{r}
+# ```
+```
+
+- Después de la `r` se pueden introducir opciones separadas por comas.
+
+- Estas opciones controlan la salida y el procesamiento de estos trozos de
+código.
+
+- Soporta el uso de "cache" y la inclusión de trozos de `Rcpp`
 
 ## YAML
 
+- Al principio de los documentos se indican los metadatos y las opciones de
+procesamiento utilizando el lenguaje de marcado ligero YAML "YAML Ain't Markup
+Language"
+
+- Es un formato de serialización legible para humanos, usado para compartir
+datos como sustitución de XML.
+
+- ```{r}
+# ---
+# title: "Reportes Dinámicos y Aplicaciones Web interactivas con R"
+# author: "Francisco Palm"
+# date: "18 de marzo de 2015"
+# output:
+#   ioslides_presentation:
+#     incremental: yes
+# ---
+```
 
 ## Pander
 
