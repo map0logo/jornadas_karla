@@ -1,0 +1,12 @@
+
+# Ejemplo 1
+
+Un ejemplo de código fuera de `R` aquí;
+sabemos que el valor de $\pi$ es `r pi`.
+
+```{r, echo=FALSE, fig.height=3, fig.width=6}
+set.seed(1213)  # por hacerlo reproducible
+x <- cumsum(rnorm(100))
+mean(x)  # media de x
+plot(x, type = 'l')  # Brownian motion
+```
