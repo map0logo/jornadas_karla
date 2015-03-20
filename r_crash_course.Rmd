@@ -21,7 +21,7 @@ print(y)                               # print information to R 'Console'
 rm(y)                                  # remove an object
 rm(list=ls())                          # remove all
 getwd()                                # find current working directory
-setwd("~/projects/jornadas_karla")     # set working directory as preferred
+setwd("/data/mapologo/projects/jornadas_karla")     # set working directory as preferred
 print    (  "R ignores the 'white-space' in command syntax"     )   
 ```
 
