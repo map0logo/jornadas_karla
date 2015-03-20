@@ -1,9 +1,13 @@
 ---
 title: "Reportes Dinámicos y Aplicaciones Web interactivas con R"
-author: "Francisco Palm"
+author: "Francisco Palm / francisco.palm@gmail.com / @mapologo"
 date: "18 de marzo de 2015"
 output:
+  slidy_presentation:
+    incremental: yes
   ioslides_presentation:
+    incremental: yes
+  beamer_presentation:
     incremental: yes
 ---
 
@@ -143,7 +147,7 @@ compilación desde scripts de R, extensible, etc.
 
 - Es código R que va encerrado entre
 
-- ```{r}
+- ```
 # ```{r}
 # ```
 ```
@@ -164,7 +168,7 @@ Language"
 - Es un formato de serialización legible para humanos, usado para compartir
 datos como sustitución de XML.
 
-- ```{r}
+- ```
 # ---
 # title: "Reportes Dinámicos y Aplicaciones Web interactivas con R"
 # author: "Francisco Palm"
@@ -209,7 +213,11 @@ datos como sustitución de XML.
 
 - Uso de `kable`, `pander` y `xtable` en R markdown.
 
-- Modificación de la apariencia con el archivo `flat-table.css`
+- Abrir el archivo `rmd_tables.Rmd` y observar como los distintos paquetes renderizan las tablas.
+
+- Ahora desde las opciones de formato (botón de engranaje al lado derecho de `Knit HTML`), activar la opción `Apply CSS file` y seleccionar el archivo `flat-table.css`.
+
+- Observar como los nuevos estilos modifican la apariencia de las tablas.
 
 
 ## Rpubs.com
@@ -251,39 +259,117 @@ utilizar en nuestra propia plataforma y sin conexión de Internet.
 
 ## Shiny
 
-- 
+- `Shiny` es una plataforma para crear programas interactivos basados en R incrustados en una página web.
 
+- Si quiere crear un algoritmo de predicción, con shiny puede *muy fácilmente* crear un formulario de entrada que llama a R y a partir del cual su algoritmo de predicción  muestra los resultados.
+
+- Usando `Shiny`, el tiempo para crear productos de datos interactivos desde R se minimiza. Aunque carece de la flexibilidad de soluciones mas completas (y complejas).
+
+- `Shiny` está hecho por el equipo de trabajo de RStudio.
 
 ## Estructura
+
+- Un proyecto de `Shiny` es un directorio que contiene al menos dos partes (que pueden estar en un mismo archivo o, es preferible, en archivos separados:
+
+  - Una llamada `ui.R` (para la interfaz de usuario) que controla la apariencia.
+  
+  - Otra con nombre `server.R` que controla como lo hace.
+
+## `ui.R`
+
+- Contiene los elementos de entrada de la interfaz, por ejemplo:
+
+- ```
+inputPanel(
+  selectInput("n_breaks", label = "Number of bins:",
+              choices = c(10, 20, 35, 50), selected = 20),
+  sliderInput("bw_adjust", label = "Bandwidth adjustment:",
+              min = 0.2, max = 2, value = 1, step = 0.2)
+)
+```
+
+- En este caso `n_breaks` y `bw_adjust` son los nombres de los elementos (widgets).
 
 
 ## `server.R`
 
+- Por su parte `server.R` tiene funciones que reciben como entrada un bloque de código, por eso va encerrado entre llaves `{}`.
 
-## Ejemplo 4
+- Nótese como para hacer referencia a los valores la entrada se escriben como `input$nombre`.
+
+- ```
+renderPlot({
+  hist(faithful$eruptions, probability = TRUE,
+       breaks = as.numeric(input$n_breaks),
+       xlab = "Duration (minutes)",
+       main = "Geyser eruption duration")
+  dens <- density(faithful$eruptions,
+                  adjust = input$bw_adjust)
+  lines(dens, col = "blue")
+})
+```
+
+## Otras cosas que puede hacer Shiny
+
+- Permitir a los usuarios cargar o descargararchivos
+
+- Tener paneles principales de pestañas.
+
+- Tener tablas de datos editables.
+
+- Tener una interfaz gráfica interactiva.
+
+- Entradas y salidas definidas por el usuario.
+
+- Poner un botón de *enviado* de forma tal que Shiny solamente ejecute código complejo despuésque el usuario lo pulse.
 
 
+## Ejemplo con datos del IPC
 
-## Controlar la ejecución
+- Se tomaron datos del portal del INE (que también están en el portal del BCV), en la página, `Indice de Precios al Consumidor`:
+
+- http://www.ine.gob.ve/index.php?option=com_content&view=category&id=108&Itemid=62
+
+- Seleccionar `INPC POR CIUDADES` y después `Por grupo según dominio de estudio, 2008 - Mayo 2014`:
+
+- http://www.ine.gob.ve/documentos/Economia/IndicedePreciosalconsumidor/xls/PorCiudades/4_6_3.xls
+
+## Procesamiento de los datos
+
+- Los datos están en un archivo de excel con 75 hojas, cada una contiene los datos mensuales del IPC desde enero 2008 hastamayo 2014 en las 10 ciudades mas grandes de Venezuela para 13 "dominios" (alimentos, bebidas alcohólicas, vestido, alquiler, etc.)
+
+- La carga de los datos es truculenta porque esta hoja de cálculo es editada a mano, en consecuencia hay pequeñas diferencias en la localización de los datos en las hojas. Para los detalles ver `read_data.R` en el repositorio https://github.com/map0logo/devdataprod-011
+
+- ```{r}
+load("data.Rdata")
+```
+
+- Se obtiene como resultado un data frame `data` con: `r nrow(data)` observaciones y `r ncol(data)` variables.
+
+## Diseño de la interfaz
+
+- La interfaz tiene un `sidebarPanel`:
+
+ - un `dateRangeInput` para las fechas
+ - un `selectInput` para las ciudades, y
+ - otro `selectInput` para los dominios
+
+- Y en un `mainPanel` que genera un gráfico automático con la serie de tiempo del IPC para el rango de fechas seleccionado y separado por dominios.
+
+- El gráfico es generado usando `ggplot2`
+
+## Captura de pantalla
+
+![Application screenshot](dp_mapologo.png)
+
+## Notas finales
+
+- Se puede acceder a la aplicación en https://mapologo.shinyapps.io/dp_mapologo y el código se encuentra en  https://github.com/map0logo/devdataprod-011
+
+- Es una pequeña demostración del poder y la flexiblidad para generar reportes dinámicos directamente desde los datos. Datos públicos reproducibles.
+
+- En lugar de ofrecer archivos de excel engorrosos y poco prácticos, las aplicaciones Shiny permiten mostrar información de una manera atractiva y dinámica, mucho mas útil para ganar comprensión y en consecuencia mas apropiada para el análisis y la toma de decisiones informada.
+
+- Esta presentación es reproducible, los fuentes y todos los archivos asociados se encuentran en: https://github.com/map0logo/jornadas_karla 
 
 
-
-## Reactividad
-
-
-## `ui.R`
-
-
-## Widgets
-
-
-## Elementos HTML
-
-
-## Ejemplo 5
-
-
-## Ejecutar la aplicación
-
-
-## Compartir
