@@ -2,10 +2,23 @@
 title: "Tablas"
 author: "Francisco Palm"
 date: "18/03/2015"
-output: html_document
+output:
+  html_document:
+    css: flat-table.css
+    theme: united
+    toc: yes
 ---
 
 Ejemplos tomados de http://kbroman.org/knitr_knutshell/pages/figs_tables.html
+
+```{r raw}
+n <- 100
+x <- rnorm(n)
+y <- 2*x + rnorm(n)
+out <- lm(y ~ x)
+library(knitr)
+summary(out)$coef
+```
 
 ```{r kable}
 n <- 100
